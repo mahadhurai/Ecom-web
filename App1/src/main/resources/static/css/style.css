@@ -1,0 +1,38 @@
+.icon{
+    width:45px;
+    height:45px;
+}
+footer{
+    margin-top: 50px;
+}
+.card-sh{
+    box-shadow: 0 0 5px 0 rgb(193, 193, 193);
+    border-radius: 5px;
+}
+.navbar-nav .nav-item a:hover{
+    transform: scale(1.2);
+}
+.navbar-nav .nav-item a{
+    transition: transform 0.1s;
+}
+.navbar-nav .nav-item .nav-link:hover{
+    transform: scale(1.1);
+    color: white;
+}
+.navbar-nav .nav-item .nav-link{
+    transition: transform 0.2s;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.image-slide {
+    animation: slide 2s ease-out;
+}
+

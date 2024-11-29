@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shop Smart</title>
+        <link rel="icon" href="/img/ss.png" type="image/png">
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+              integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+            .main {
+                background-color: #F8F9FA;
+                margin-top: 50px;
+                border-radius: 10px;
+                border: 1px solid rgb(180, 180, 180);
+            }
+
+            body {
+                background-color: white;
+            }
+
+            .card img:hover {
+                transform: scale(1.1);
+            }
+
+            .card img {
+                transition: transform 0.2s;
+            }
+
+            .carousel-item img {
+                width: 100%;
+                height: 390px;
+            }
+
+            #ani {
+                width: 90%;
+                box-shadow: 2px 2px 10px grey, -2px -2px 10px grey;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand"><img src="/img/ss.png" class="icon"> Shop
+                    Smart</a>
+                <button class="navbar-toggler" data-bs-target="#my" data-bs-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="my">
+                    <div class="navbar-nav">
+                        <li class="nav-item"><a href="/" class="nav-link"><i class="fa-solid fa-house"
+                                                                             style="color: #ffffff;"></i> Home</a></li>
+                        <li class="nav-item"><a href="/products" class="nav-link"><i class="fa-brands fa-product-hunt"
+                                                                                     style="color: #ffffff;"></i> Product</a></li>
+
+                        <li class="nav-item dropdown"><a href="/category" class="nav-link dropdown-toggle"
+                                                         data-bs-toggle="dropdown"><i class="fa-solid fa-list" style="color: #ffffff;"></i>
+                                Category</a>
+                            <ul class="dropdown-menu">
+                                <li th:each="c:${categorys}"><a th:href="@{'/products?category='+${c.name}}"
+                                                                class="dropdown-item">[[${c.name}]]</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="navbar-nav ms-auto mb-lg-0">
+                        <th:block th:if="${session.user != null}">
+                            <!-- Navbar items for logged-in users -->
+                            <li class="nav-item"><a href="/user/cart" class="nav-link"><i class="fa-solid fa-cart-shopping"
+                                                                                          style="color: #ffffff;"></i> CART [ [[${countCart}]] ]</a></li>
+                            <li class="nav-item dropdown"><a href="/user/" class="nav-link dropdown-toggle"
+                                                             data-bs-toggle="dropdown"><i class="fa-solid fa-circle-user"
+                                                             style="color: #ffffff;"></i> USER</a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a href="/user/profile" class="dropdown-item">Profile</a></li>
+                                    <li><a href="/user/my-orders" class="dropdown-item">My Orders</a></li>
+                                    <li><a href="/user/dltAcc" class="dropdown-item">Delete Account</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a href="/user/logout" class="dropdown-item"><i class="fa-solid fa-right-to-bracket"
+                                                                                        style="color: #0D6EFD;"></i> Logout</a></li>
+                                </ul>
+                            </li>
+
+
+                        </th:block>
+
+                        <th:block th:unless="${session.user != null}">
+                            <!-- Navbar items for non-logged-in users -->
+                            <li class="nav-item"><a href="/user/login" class="nav-link"><i
+                                        class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> LOGIN</a></li>
+                            <li class="nav-item"><a href="/register" class="nav-link"><i class="fa-regular fa-registered"
+                                                                                         style="color: #ffffff;"></i> REGISTER</a></li>
+                            <li class="nav-item"><a href="/admin/login" class="nav-link"><i class="fa-solid fa-user-tie"
+                                                                                            style="color: #ffffff;"></i> ADMIN</a></li>
+                        </th:block>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- slider -->
+        <div class="container-fluid" style="margin-top: 80px;" id="ani">
+            <div class="carousel slide" data-bs-ride="carousel" id="slide">
+                <div class="carousel-inner ">
+                    <div class="carousel-item active">
+                        <img src="/img/ecom3.jpg" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/img/i2.jpg" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/img/i3.avif" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/img/i5.webp" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/img/i1.webp" alt="">
+                    </div>
+                </div>
+                <button class="carousel-control-prev bg-ligh" data-bs-target="#slide" data-bs-slide="prev">
+                    <span class="carousl-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" data-bs-target="#slide" data-bs-slide="next">
+                    <span class="carousl-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Category -->
+        <div class="container p-3 main">
+            <div class="row">
+                <h4 class="text-center mt-3">Category</h4>
+                <div class="col-md-3" th:each="c:${category}">
+                    <div class="card shadow-sm p-3 mb-5 bg-body-white">
+                        <div class="card-body text-center bg-white">
+                            <img th:src="@{'img/category_img/'+${c.imgName}}" width="65%" height="140px"><br>
+                            <a th:href="@{'/products?category='+${c.name}}" class="text-decoration-none">[[${c.name}]]</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- product -->
+        <div class="container p-3 main">
+            <div class="row">
+                <h4 class="text-center m-3">Latest Product</h4>
+                <div class="col-md-3" th:each="p:${products}">
+                    <div class="card shadow-sm p-3 mb-5 bg-body-white">
+                        <div class="card-body text-center bg-white">
+                            <img alt="" th:src="@{'img/product_img/'+${p.image}}" class="" width="65%"
+                                 height="140px">
+                            <p class="text-center"><a th:href="@{'/product/'+${p.id}}" class="text-decoration-none">[[${p.title}]]</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer class="container-fluid p-1 text-center text-white mt-5 bg-primary">
+            <h6>ecom.com</h6>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    </body>
+
+</html>
